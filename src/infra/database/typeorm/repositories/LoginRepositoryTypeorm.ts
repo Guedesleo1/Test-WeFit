@@ -1,25 +1,28 @@
+import "reflect-metadata";
 import { Repository } from "typeorm";
-import { theWordDatabase } from "../data-source";
-import { LoginEntity } from "../entities/Login.entity";
+import { dateBaseSource } from "../data-source";
 import { LoginRepository } from "../../../../data/protocols/login-repository";
 import { LoginDomain } from "../../../../domain/entities/loginDomain";
+import { LoginEntity } from "../entities/login.entity";
 
 export class LoginRepositoryTypeorm implements LoginRepository {
     private readonly loginEntity: Repository<LoginDomain>;
     constructor() {
-        this.loginEntity = theWordDatabase.getRepository<LoginDomain>(LoginEntity);
+        this.loginEntity = dateBaseSource.getRepository<LoginDomain>(LoginEntity)
     }
     async create(userLogin: any): Promise<any> {
-        console.log("repository")
         const userLoginCreate = this.loginEntity.create(userLogin);
         await this.loginEntity.save(userLoginCreate);
         return userLoginCreate;
     }
 
     async exists({ email }: { email: string }): Promise<boolean> {
-        console.log("aqui 2")
         const userExists = await this.loginEntity.findOne({ where: { email } });
-        console.log("userExists", userExists)
         return !!userExists;
+    }
+
+    async findByEmail(email: string): Promise<LoginDomain | null> {
+        const userExists = await this.loginEntity.findOne({ where: { email } });
+        return userExists;
     }
 }

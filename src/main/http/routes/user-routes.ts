@@ -1,10 +1,10 @@
 
 import { Router } from "express";
 import { ExpressRouteAdapter } from "../../adapters/express-route-adapter";
-import { CreateLoginFactory } from "../../factories/create-login-factory";
+import { ensureAuthenticated } from "../config/ensureAuthenticated";
+import { CreateUsersFactory } from "../../factories/create-users-factory";
 
 const userRouter = Router();
-
-userRouter.post("/", ExpressRouteAdapter.adapt(CreateLoginFactory.register()));
+userRouter.post("/token",ensureAuthenticated, ExpressRouteAdapter.adapt(CreateUsersFactory.register()));
 
 export { userRouter };

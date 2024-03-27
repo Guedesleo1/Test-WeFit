@@ -1,37 +1,23 @@
-import { EntitySchema, EntitySchemaOptions } from "typeorm";
-import { LoginDomain } from "../../../../domain/entities/loginDomain";
+import "reflect-metadata";
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
-const loginSchema: EntitySchemaOptions<LoginDomain> = {
-    name: "login",
-    columns: {
-        id: {
-            type: "uuid",
-            primary: true,
-            nullable: false,
-        },
-        email: {
-            type: "varchar",
-            unique: true,
-            length: 200,
-        },
-        name: {
-            type: "varchar",
-            length: 200,
-            nullable: false,
-        },
-        password: {
-            type: "varchar",
-            length: 350,
-            nullable: false,
-        },
-    },
-    indices: [
-        {
-            columns: ["email"],
-            name: "login_email_key",
-            unique: true,
-        },
-    ],
-};
+@Entity({ name: 'login' })
+export class LoginEntity {
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
-export const LoginEntity = new EntitySchema<LoginDomain>(loginSchema);
+    @Column({ name: 'name', length: 100, nullable: false })
+    name: string;
+
+    @Column({ name: 'email', length: 100, nullable: false, unique: true })
+    email: string;
+
+    @Column({ name: 'password', length: 250, nullable: false })
+    password: string;
+
+    @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
+    createdAt: Date;
+
+    @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
+    updatedAt: Date;
+}

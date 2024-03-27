@@ -1,4 +1,4 @@
-import { LoginEntity } from "../../../infra/database/typeorm/entities/Login.entity";
+import { LoginEntity } from "../../../infra/database/typeorm/entities/login.entity";
 import { Result } from "../../helpers/result";
 import { Encrypter } from "../../protocols/encrypter";
 import { IdGenerator } from "../../protocols/id-generator";
@@ -22,7 +22,6 @@ export class CreateLoginUseCase {
     }
 
     async create(login: any): Promise<Result<any>> {
-        console.log("aquii")
         const userExists = await this.loginRepository.exists({
             email: login.email.toUpperCase(),
         });

@@ -1,8 +1,10 @@
-import { theWordDatabase } from "../../../infra/database/typeorm/data-source";
+import { dateBaseSource } from "../../../infra/database/typeorm/data-source";
 
-export const setupDatabase = () =>
-    theWordDatabase
-        .initialize()
-        .then((conn : any) =>
-            console.log(`Connected on database: ${conn.driver.database}`)
-        );
+export const setupDatabase = async () => {
+    try {
+        const conn = await dateBaseSource.initialize();
+        console.log(`Connected on database: ${conn.driver.database}`);
+    } catch (error) {
+        console.error('Database connection failed:', error);
+    }
+};
