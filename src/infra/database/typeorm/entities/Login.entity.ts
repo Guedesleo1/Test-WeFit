@@ -3,8 +3,8 @@ import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateCol
 
 @Entity({ name: 'login' })
 export class LoginEntity {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+    @PrimaryGeneratedColumn('uuid',{ name: 'user_id'})
+    userId: string;
 
     @Column({ name: 'name', length: 100, nullable: false })
     name: string;
@@ -17,7 +17,4 @@ export class LoginEntity {
 
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
     createdAt: Date;
-
-    @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
-    updatedAt: Date;
 }
