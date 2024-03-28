@@ -34,7 +34,6 @@ export class CreateLoginController implements Controller {
 
             return Response.ok({ user: result.getValue() });
         } catch (error) {
-            console.log(error)
             return Response.serverError();
         }
     }

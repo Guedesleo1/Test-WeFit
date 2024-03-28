@@ -5,6 +5,6 @@ import { ensureAuthenticated } from "../config/ensureAuthenticated";
 import { CreateUsersFactory } from "../../factories/create-users-factory";
 
 const userRouter = Router();
-userRouter.post("/token",ensureAuthenticated, ExpressRouteAdapter.adapt(CreateUsersFactory.register()));
+userRouter.post("/",ensureAuthenticated, ExpressRouteAdapter.adapt(CreateUsersFactory.register()));
 
 export { userRouter };

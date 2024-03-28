@@ -1,10 +1,7 @@
-import { CreateLoginUseCase } from "../../data/modules/useCase/create-login-usecase";
 import { CreateTokenUseCase } from "../../data/modules/useCase/create-token-usecase";
 import { Bcrypt } from "../../infra/database/adapters/encrypter/bcrypt";
-import { Uuid } from "../../infra/database/adapters/id-generator/uuid";
 import { Auth } from "../../infra/database/adapters/jwt/Auth";
 import { LoginRepositoryTypeorm } from "../../infra/database/typeorm/repositories/LoginRepositoryTypeorm";
-import { CreateLoginController } from "../../presentation/controller/create-login-controller";
 import { CreateTokenController } from "../../presentation/controller/create-token-controller";
 
 export class CreateTokenFactory {

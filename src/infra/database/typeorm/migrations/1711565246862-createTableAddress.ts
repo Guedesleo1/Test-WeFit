@@ -7,7 +7,7 @@ export class CreateTableAddress1711565246862 implements MigrationInterface {
             name: "address",
             columns: [
                 {
-                    name: "cep_id",
+                    name: "zip_code_id",
                     type: "varchar",
                     isPrimary: true,
                     isNullable: false
@@ -31,14 +31,6 @@ export class CreateTableAddress1711565246862 implements MigrationInterface {
             ]
         }));
         
-        await queryRunner.createForeignKey(
-            'users',
-            new TableForeignKey({
-              columnNames: ['cep'],
-              referencedTableName: 'address',
-              referencedColumnNames: ['cep_id']
-            })
-          );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
