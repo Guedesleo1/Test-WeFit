@@ -1,7 +1,6 @@
-import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
 export class CreateTableLogin1711583562420 implements MigrationInterface {
-
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
@@ -27,7 +26,7 @@ export class CreateTableLogin1711583562420 implements MigrationInterface {
                   isNullable: false,
                 },
                 {
-                  name: 'user_id',
+                  name: 'id',
                   type: 'varchar',
                   length: '100',
                   isNullable: false,
@@ -38,17 +37,13 @@ export class CreateTableLogin1711583562420 implements MigrationInterface {
                   name: 'created_at',
                   type: 'timestamp',
                 },
+                {
+                  name: 'updated_at',
+                  type: 'timestamp',
+                },
               ],
             }),
           );
-
-          await queryRunner.createForeignKey('users', new TableForeignKey({
-            columnNames: ['id'],
-            referencedColumnNames: ['user_id'],
-            referencedTableName: 'login',
-            onDelete: 'CASCADE',
-            name: 'fk_users_login'
-        }));
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
