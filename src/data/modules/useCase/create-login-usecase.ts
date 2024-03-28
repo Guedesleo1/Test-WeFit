@@ -1,16 +1,16 @@
-import { LoginEntity } from "../../../infra/database/typeorm/entities/login.entity";
+import { ICreateLoginUseCase, IResponseCreateLogin, loginCreateDTO } from "../../../domain/usecases/Icreate-login-usecase";
 import { Result } from "../../helpers/result";
 import { Encrypter } from "../../protocols/encrypter";
 import { IdGenerator } from "../../protocols/id-generator";
 import { LoginRepository } from "../../protocols/login-repository";
 
-interface CreateLoginConstructor {
+export interface CreateLoginConstructor {
     loginRepo: LoginRepository;
     encrypter: Encrypter;
     idGenerator: IdGenerator;
 }
 
-export class CreateLoginUseCase {
+export class CreateLoginUseCase implements ICreateLoginUseCase{
     private readonly loginRepository: LoginRepository;
     private readonly idGenerator: IdGenerator;
     private readonly encrypter: Encrypter;
@@ -21,7 +21,7 @@ export class CreateLoginUseCase {
         this.idGenerator = idGenerator;
     }
 
-    async create(login: any): Promise<Result<any>> {
+    async create(login: loginCreateDTO): Promise<Result<IResponseCreateLogin>> {
         const userExists = await this.loginRepository.exists({
             email: login.email.toUpperCase(),
         });
@@ -30,12 +30,12 @@ export class CreateLoginUseCase {
         }
 
         const newUser = await this.loginRepository.create({
-            id: this.idGenerator.random(),
+            userId: this.idGenerator.random(),
             email: login.email,
             name: login.name,
             password: await this.encrypter.hash(login.password),
         });
 
-        return Result.ok<any>(newUser);
+        return Result.ok(newUser);
     }
 }

@@ -1,3 +1,3 @@
 export interface IUserRepository {
-    create(login: any): Promise<any>;
+    create(user: any): Promise<any>;
 }

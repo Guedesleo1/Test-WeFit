@@ -51,7 +51,7 @@ export const modelSchema = {
                 "type": "boolean",
                 "example": false,
             },
-            "value":{
+            "address":{
                 "type": "object",
                 "properties": {
                     "id": {

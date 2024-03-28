@@ -3,7 +3,7 @@ import { Repository } from "typeorm";
 import { dateBaseSource } from "../data-source";
 import { IAddressRepository } from "../../../../data/protocols/address-repository";
 import { AddressEntity } from "../entities/address.entity";
-import { AddressDomain } from "../../../../domain/entities/addressDomain";
+import { AddressDomain } from "../../../../domain/entities/address-domain";
 
 export class AddressRepositoryTypeorm implements IAddressRepository {
     private readonly addressEntity: Repository<AddressDomain>;

@@ -1,10 +1,11 @@
 import { Response, Controller, HttpRequest, HttpResponse } from ".";
 import { CreateLoginUseCase } from "../../data/modules/useCase/create-login-usecase";
+import { ICreateLoginUseCase } from "../../domain/usecases/Icreate-login-usecase";
 
 export class CreateLoginController implements Controller {
-    private readonly createAuthentication: CreateLoginUseCase;
+    private readonly createAuthentication: ICreateLoginUseCase;
 
-    constructor(createAuthentication: CreateLoginUseCase) {
+    constructor(createAuthentication: ICreateLoginUseCase) {
         this.createAuthentication = createAuthentication;
     }
 
@@ -32,7 +33,7 @@ export class CreateLoginController implements Controller {
                 return Response.badRequest(result.error);
             }
 
-            return Response.ok({ user: result.getValue() });
+            return Response.ok(result.getValue());
         } catch (error) {
             return Response.serverError();
         }

@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
+import { IViaCep } from '../../../../data/protocols/viaCep';
 
-interface ViaCEPResponse {
+export interface ViaCEPResponse {
     zipCodeId: string;
     //logradouro
     publicPlace: string;
@@ -14,7 +15,7 @@ interface ViaCEPResponse {
     state: string;
 }
 
-export class ViaCEP {
+export class ViaCEP implements IViaCep{
     private baseUrl: string;
 
     constructor() {

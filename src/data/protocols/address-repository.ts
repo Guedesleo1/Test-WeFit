@@ -1,3 +1,3 @@
 export interface IAddressRepository {
-    create(login: any): Promise<any>;
+    create(address: any): Promise<any>;
 }

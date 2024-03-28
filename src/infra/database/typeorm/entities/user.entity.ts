@@ -3,7 +3,7 @@ import { AddressEntity } from './address.entity';
 
 @Entity('users')
 export class UserEntity {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id: string;
 
     @Column({ length: 100 })

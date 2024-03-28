@@ -26,7 +26,7 @@ export class CreateTableLogin1711583562420 implements MigrationInterface {
                   isNullable: false,
                 },
                 {
-                  name: 'id',
+                  name: 'user_id',
                   type: 'varchar',
                   length: '100',
                   isNullable: false,
@@ -35,10 +35,6 @@ export class CreateTableLogin1711583562420 implements MigrationInterface {
                 },
                 {
                   name: 'created_at',
-                  type: 'timestamp',
-                },
-                {
-                  name: 'updated_at',
                   type: 'timestamp',
                 },
               ],

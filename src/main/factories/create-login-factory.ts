@@ -5,7 +5,7 @@ import { LoginRepositoryTypeorm } from "../../infra/database/typeorm/repositorie
 import { CreateLoginController } from "../../presentation/controller/create-login-controller";
 
 export class CreateLoginFactory {
-    static register(): CreateLoginController {
+    static register() {
         const idGenerator = new Uuid();
         const encrypter = new Bcrypt();
         const loginRepository = new LoginRepositoryTypeorm();

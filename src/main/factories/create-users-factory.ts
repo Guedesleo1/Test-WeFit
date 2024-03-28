@@ -1,5 +1,5 @@
 import { CreateUserUseCase } from "../../data/modules/useCase/create-users-usecase";
-import { ViaCEP } from "../../infra/database/adapters/viacep/viacep";
+import { ViaCEP } from "../../infra/database/adapters/viacep/via-cep";
 import { AddressRepositoryTypeorm } from "../../infra/database/typeorm/repositories/AddressRepositoryTypeorm";
 import { UserRepositoruTypeorm } from "../../infra/database/typeorm/repositories/UserRepositoryTypeorm";
 import { CreateUsersController } from "../../presentation/controller/create-users-controller";

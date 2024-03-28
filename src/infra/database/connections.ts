@@ -3,14 +3,14 @@ import { LoginEntity } from "./typeorm/entities/login.entity";
 import { UserEntity } from "./typeorm/entities/user.entity";
 
 export const testConnection = {
-    type: "mysql",
+    type: "sqlite",
     host: "localhost",
-    port: process.env.MYSQLDB_PORT,
+    port: 3308,
     username: "root",
-    password:  Number(process.env.MYSQLDB_PASSWORD),
-    database: process.env.MYSQLDB_DATABASE,
-    entities: [`${__dirname}/entities/*.ts`],
-    migrations: [`${__dirname}/migrations/*.ts`],
+    password:  'senha_root_123',
+    database: 'wefit-test',
+    entities: [LoginEntity, AddressEntity, UserEntity],
+    migrations: [`${__dirname}/typeorm/migrations/*.ts`],
 };
 
 export const mysqlConnection = {

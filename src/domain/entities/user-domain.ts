@@ -3,12 +3,12 @@ export class UserDomain {
     public readonly name: string;
     public readonly documentType: string;
     public readonly document: string;
-    public readonly telephone: string;
+    public readonly telephone?: string | null;
     public readonly cellphone: string;
     public readonly zipCode: string;
     public readonly email: string;
     public readonly addressNumber: string;
-    public readonly complement: string;
+    public readonly complement?: string | null;
 
     private constructor({ 
         id, 

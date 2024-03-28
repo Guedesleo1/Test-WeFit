@@ -1,11 +1,13 @@
+
 import { Response, Controller, HttpRequest, HttpResponse } from ".";
 import { CreateTokenUseCase } from "../../data/modules/useCase/create-token-usecase";
+import { ICreateTokenUseCase } from "../../domain/usecases/Icrate-token-usecase";
 
 export class CreateTokenController implements Controller {
 
-    private readonly createToken: CreateTokenUseCase;
+    private readonly createToken: ICreateTokenUseCase;
 
-    constructor(createToken: CreateTokenUseCase) {
+    constructor(createToken: ICreateTokenUseCase) {
         this.createToken = createToken;
     }
 
@@ -21,12 +23,10 @@ export class CreateTokenController implements Controller {
                     return Response.badRequest({ field });
                 }
             }
-            const { email, password } = httpRequest.body;
+            const dataToken = httpRequest.body;
 
-            const result = await this.createToken.create(
-                email,
-                password,
-            );
+            const result = await this.createToken.create(dataToken);
+            
             if (result.isFailure) {
                 return Response.badRequest(result.error);
             }
