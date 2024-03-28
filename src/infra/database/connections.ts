@@ -1,4 +1,6 @@
+import { AddressEntity } from "./typeorm/entities/address.entity";
 import { LoginEntity } from "./typeorm/entities/login.entity";
+import { UserEntity } from "./typeorm/entities/user.entity";
 
 export const testConnection = {
     type: "mysql",
@@ -18,11 +20,6 @@ export const mysqlConnection = {
     username: "root",
     password:  'senha_root_123',
     database: 'wefit',
-    entities: [LoginEntity],
+    entities: [LoginEntity, AddressEntity, UserEntity],
     migrations: [`${__dirname}/typeorm/migrations/*.ts`],
-     cli: {
-        entitiesDir: "entity",
-        migrationsDir: "migration",
-        subscribersDir: "subscriber",
-    },
 };

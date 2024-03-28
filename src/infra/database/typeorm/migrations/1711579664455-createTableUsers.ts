@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
 
-export class CreateTableUsers1711565227569 implements MigrationInterface {
+export class CreateTableUsers1711579664455 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
@@ -31,6 +31,7 @@ export class CreateTableUsers1711565227569 implements MigrationInterface {
                 {
                     name: "telephone",
                     type: "varchar", 
+                    isNullable: true,
                 },
                 {
                     name: "cellphone",
@@ -63,9 +64,16 @@ export class CreateTableUsers1711565227569 implements MigrationInterface {
             ]
         }));
 
+        await queryRunner.createForeignKey('users', new TableForeignKey({
+            columnNames: ['cep'],
+            referencedColumnNames: ['cep_id'],
+            referencedTableName: 'address',
+            name: 'fk_users_address_cep',
+        }));
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropForeignKey("users", "fk_users_address_cep");
         await queryRunner.dropTable("users", true);
     }
 

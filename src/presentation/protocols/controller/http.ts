@@ -1,5 +1,6 @@
 interface HttpRequest {
     body?: any;
+    request?: any
 }
 
 interface HttpResponse {

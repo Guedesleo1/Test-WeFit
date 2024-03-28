@@ -37,7 +37,7 @@ export class CreateTokenUseCase {
             throw new Error('Password invalid');
           }
 
-          const accessToken = this.jwt.generate(loginExists.id)
+          const accessToken = this.jwt.generate(loginExists)
 
         return Result.ok<any>({accessToken});
     }

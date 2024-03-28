@@ -2,7 +2,7 @@ import { Request, NextFunction, Response } from "express";
 import { JsonWebTokenError, verify } from "jsonwebtoken";
 
 interface IPayload {
-  sub: string;
+  data: object;
 }
 
 export async function ensureAuthenticated(
@@ -19,10 +19,12 @@ export async function ensureAuthenticated(
 
     if (type != "Bearer") throw new Error("Invalid token.");
 
-    verify(
+    const data = verify(
       token,
       "secret"
     ) as IPayload;
+    
+    Object.assign(request,  data );
 
     next();
   } catch (error: any) {

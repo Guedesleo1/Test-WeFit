@@ -2,7 +2,7 @@ import "reflect-metadata";
 import { Repository } from "typeorm";
 import { dateBaseSource } from "../data-source";
 import { LoginRepository } from "../../../../data/protocols/login-repository";
-import { LoginDomain } from "../../../../domain/entities/loginDomain";
+import { LoginDomain } from "../../../../domain/entities/login-domain";
 import { LoginEntity } from "../entities/login.entity";
 
 export class LoginRepositoryTypeorm implements LoginRepository {
