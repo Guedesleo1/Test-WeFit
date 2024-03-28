@@ -17,7 +17,11 @@ export default {
             "type": "string",
             "example": "985749658"
         },
+<<<<<<< HEAD
         "zipCode": {
+=======
+        "cep": {
+>>>>>>> e174aa6506bc940a4616e47a46af9aa40ea29296
             "type": "string",
             "example": "02871000"
         },

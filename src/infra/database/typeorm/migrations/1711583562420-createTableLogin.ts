@@ -47,7 +47,6 @@ export class CreateTableLogin1711583562420 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-     await queryRunner.dropForeignKey("users", "fk_users_login");
       await queryRunner.dropTable("login", true);
     }
 
