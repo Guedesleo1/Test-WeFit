@@ -11,7 +11,7 @@ o docker-compose vai criar um container de um MySQL e você poderá acessar via 
 ### Antes de Iniciar o servidor executar o seguinte comando:
     npm run migrate
 
-### Para rodar os testes basta execeutar o seguinte comando:
+### Para rodar os testes basta executar o seguinte comando:
     npm run test
 
 ### Para acesar docs e so coloca no browser essa url:
