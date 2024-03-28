@@ -15,3 +15,4 @@ export interface IResponseCreateLogin{
 
 export interface ICreateLoginUseCase {
     create: (user: loginCreateDTO) => Promise<Result<IResponseCreateLogin>>
+}

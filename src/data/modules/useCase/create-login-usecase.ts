@@ -36,6 +36,6 @@ export class CreateLoginUseCase implements ICreateLoginUseCase{
             password: await this.encrypter.hash(login.password),
         });
 
-        return Result.ok(newUser);
+        return Result.ok<IResponseCreateLogin>(newUser);
     }
 }

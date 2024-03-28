@@ -35,7 +35,7 @@ const makeSut = (): SutType => {
 };
 
 describe("Create Login Controller", () => {
-    test("should return badRequest if body not send", async () => {
+    it("should return badRequest if body not send", async () => {
         const { sut } = makeSut();
         const response = await sut.handle({});
 
@@ -47,7 +47,7 @@ describe("Create Login Controller", () => {
         expect(response.body.error).toHaveProperty("field");
         expect(response.body.error.field).toEqual("body");
     });
-    test("should return badRequest if not email is provided", async () => {
+    it("should return badRequest if not email is provided", async () => {
         const { sut } = makeSut();
         const httpRequest: HttpRequest = {
             body: {
@@ -66,7 +66,7 @@ describe("Create Login Controller", () => {
         expect(response.body.error).toHaveProperty("field");
         expect(response.body.error.field).toEqual("email");
     });
-    test("should return badRequest if not name is provided", async () => {
+    it("should return badRequest if not name is provided", async () => {
         const { sut } = makeSut();
         const httpRequest: HttpRequest = {
             body: {
@@ -84,7 +84,7 @@ describe("Create Login Controller", () => {
         expect(response.body.error).toHaveProperty("field");
         expect(response.body.error.field).toEqual("name");
     });
-    test("should return badRequest if not password is provided", async () => {
+    it("should return badRequest if not password is provided", async () => {
         const { sut } = makeSut();
         const httpRequest: HttpRequest = {
             body: {
@@ -102,7 +102,7 @@ describe("Create Login Controller", () => {
         expect(response.body.error).toHaveProperty("field");
         expect(response.body.error.field).toEqual("password");
     });
-    test("should return serverError if CreateLogin throws", async () => {
+    it("should return serverError if CreateLogin throws", async () => {
         const { sut, createLoginStub } = makeSut();
         jest.spyOn(createLoginStub, "create").mockImplementationOnce(() =>
             Promise.reject()
@@ -124,7 +124,7 @@ describe("Create Login Controller", () => {
         expect(response.body).toHaveProperty("error");
         expect(response.body.error).toEqual("Internal Server Error");
     });
-    test("should return badRequest if CreateLogin throws", async () => {
+    it("should return badRequest if CreateLogin throws", async () => {
         const { sut, createLoginStub } = makeSut();
         jest.spyOn(createLoginStub, "create").mockImplementationOnce(() =>
             Promise.resolve(Result.fail("User already exists"))
@@ -146,7 +146,7 @@ describe("Create Login Controller", () => {
         expect(response.body).toHaveProperty("error");
         expect(response.body.error).toEqual("User already exists");
     });
-    test("should call CreateLogin with correct values", async () => {
+    it("should call CreateLogin with correct values", async () => {
         const { sut, createLoginStub } = makeSut();
         const createUserSpy = jest.spyOn(createLoginStub, "create");
         const httpRequest: HttpRequest = {
@@ -164,7 +164,7 @@ describe("Create Login Controller", () => {
             password: "any_password",
         });
     });
-    test("should return login on success", async () => {
+    it("should return login on success", async () => {
         const { sut } = makeSut();
         const httpRequest: HttpRequest = {
             body: {

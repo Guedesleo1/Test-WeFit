@@ -32,7 +32,7 @@ const makeSut = (): SutType => {
 };
 
 describe("Create token Controller", () => {
-    test("should return badRequest if body not send", async () => {
+    it("should return badRequest if body not send", async () => {
         const { sut } = makeSut();
         const response = await sut.handle({});
 
@@ -44,7 +44,7 @@ describe("Create token Controller", () => {
         expect(response.body.error).toHaveProperty("field");
         expect(response.body.error.field).toEqual("body");
     });
-    test("should return badRequest if not email is provided", async () => {
+    it("should return badRequest if not email is provided", async () => {
         const { sut } = makeSut();
         const httpRequest: HttpRequest = {
             body: {
@@ -62,7 +62,7 @@ describe("Create token Controller", () => {
         expect(response.body.error).toHaveProperty("field");
         expect(response.body.error.field).toEqual("email");
     });
-    test("should return badRequest if not password is provided", async () => {
+    it("should return badRequest if not password is provided", async () => {
         const { sut } = makeSut();
         const httpRequest: HttpRequest = {
             body: {
@@ -80,7 +80,7 @@ describe("Create token Controller", () => {
         expect(response.body.error).toHaveProperty("field");
         expect(response.body.error.field).toEqual("password");
     });
-    test("should return serverError if CreateToken throws", async () => {
+    it("should return serverError if CreateToken throws", async () => {
         const { sut, createTokenStub } = makeSut();
         jest.spyOn(createTokenStub, "create").mockImplementationOnce(() =>
             Promise.reject()
@@ -101,7 +101,7 @@ describe("Create token Controller", () => {
         expect(response.body).toHaveProperty("error");
         expect(response.body.error).toEqual("Internal Server Error");
     });
-    test("should return badRequest if CreateToken throws", async () => {
+    it("should return badRequest if CreateToken throws", async () => {
         const { sut, createTokenStub } = makeSut();
         jest.spyOn(createTokenStub, "create").mockImplementationOnce(() =>
             Promise.resolve(Result.fail("Password invalid"))
@@ -122,7 +122,7 @@ describe("Create token Controller", () => {
         expect(response.body).toHaveProperty("error");
         expect(response.body.error).toEqual("Password invalid");
     });
-    test("should call createToken with correct values", async () => {
+    it("should call createToken with correct values", async () => {
         const { sut, createTokenStub } = makeSut();
         const createUserSpy = jest.spyOn(createTokenStub, "create");
         const httpRequest: HttpRequest = {
@@ -138,7 +138,7 @@ describe("Create token Controller", () => {
             password: "any_password",
         });
     });
-    test("should return token on success", async () => {
+    it("should return token on success", async () => {
         const { sut } = makeSut();
         const httpRequest: HttpRequest = {
             body: {

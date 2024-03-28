@@ -48,7 +48,7 @@ const makeSut = (): SutType => {
 };
 
 describe("Create Users Controller", () => {
-    test("should return serverError if create Users throws", async () => {
+    it("should return serverError if create Users throws", async () => {
         const { sut, createUsersStub } = makeSut();
         jest.spyOn(createUsersStub, "create").mockImplementationOnce(() =>
             Promise.reject()
@@ -81,7 +81,7 @@ describe("Create Users Controller", () => {
         expect(response.body).toHaveProperty("error");
         expect(response.body.error).toEqual("Internal Server Error");
     });
-    test("should return badRequest if createUsers throws", async () => {
+    it("should return badRequest if createUsers throws", async () => {
         const { sut, createUsersStub } = makeSut();
         jest.spyOn(createUsersStub, "create").mockImplementationOnce(() =>
             Promise.resolve(Result.fail("Erro ao obter endereço do CEP"))
@@ -114,7 +114,7 @@ describe("Create Users Controller", () => {
         expect(response.body).toHaveProperty("error");
         expect(response.body.error).toEqual("Erro ao obter endereço do CEP");
     });
-    test("should call createUsersStub with correct values", async () => {
+    it("should call createUsersStub with correct values", async () => {
         const { sut, createUsersStub } = makeSut();
         const createUserSpy = jest.spyOn(createUsersStub, "create");
         const httpRequest: HttpRequest = {
@@ -150,7 +150,7 @@ describe("Create Users Controller", () => {
             zipCode: "02871000",
         });
     });
-    test("should return users on success", async () => {
+    it("should return users on success", async () => {
         const { sut } = makeSut();
         const httpRequest: HttpRequest = {
             body: {
